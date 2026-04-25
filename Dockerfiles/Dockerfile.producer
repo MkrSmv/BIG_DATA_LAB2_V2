@@ -1,0 +1,15 @@
+FROM python:3.9
+
+WORKDIR /app
+
+COPY ../requirements/req_model.txt .
+
+COPY ../data ./data
+COPY ../src/config.py .  
+COPY ../src/kafka_clients.py .
+COPY ../src/producer.py .
+
+RUN python -m pip install --upgrade pip
+RUN pip install --no-cache-dir -r req_model.txt
+
+CMD ["python", "producer.py"]

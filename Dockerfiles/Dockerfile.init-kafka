@@ -1,0 +1,13 @@
+FROM python:3.9
+
+WORKDIR /app
+
+COPY ../requirements/req_model.txt .
+
+COPY ../src/config.py .  
+COPY ../src/init_kafka.py .
+
+RUN python -m pip install --upgrade pip
+RUN pip install --no-cache-dir -r req_model.txt
+
+CMD ["python", "init_kafka.py"]
